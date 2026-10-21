@@ -37,6 +37,7 @@ coverage/
 .vite/
 .next/
 out/
+node_modules/
 
 # ==============================
 # Runtime logs
