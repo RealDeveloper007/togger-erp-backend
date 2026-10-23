@@ -29,6 +29,10 @@ export class ClearMaterialsQuotationsStockAndInvoices1793200000000 implements Mi
     await queryRunner.query('DELETE FROM "products"');
 
     await queryRunner.query('DELETE FROM "customers"');
+
+    await queryRunner.query(`ALTER TABLE "customers" ALTER COLUMN "customer_code" SET DEFAULT ('CUS-' || LPAD(nextval('customers_customer_code_seq')::text, 4, '0'))`);
+    await queryRunner.query(`SELECT setval('customers_customer_code_seq', 1, false)`);
+    await queryRunner.query(`UPDATE "company_settings" SET "quotation_prefix" = 'TOG-', "quotation_next_number" = 1001`);
   }
 
   async down(): Promise<void> {

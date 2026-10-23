@@ -9,7 +9,7 @@ export enum CustomerType {
 
 @Entity('customers')
 export class Customer extends BaseEntity {
-  @Column({ name: 'customer_code', unique: true, length: 20, default: () => "'cus-' || lpad(nextval('customers_customer_code_seq')::text, 4, '0')" })
+  @Column({ name: 'customer_code', unique: true, length: 20, default: () => "'CUS-' || lpad(nextval('customers_customer_code_seq')::text, 4, '0')" })
   customerCode: string;
 
   @Column({ type: 'enum', enum: CustomerType, default: CustomerType.INDIVIDUAL })
